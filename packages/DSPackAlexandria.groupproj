@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{910B98E0-37E5-434D-AD5B-DE1BE10A36C1}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="DSPackR.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DSPackDesign_Pkg.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Demos\DSVideoWinDowEx\PlayWin\PlayWin.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DSPackR">
+        <MSBuild Projects="DSPackR.dproj"/>
+    </Target>
+    <Target Name="DSPackR:Clean">
+        <MSBuild Projects="DSPackR.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DSPackR:Make">
+        <MSBuild Projects="DSPackR.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DSPackDesign_Pkg">
+        <MSBuild Projects="DSPackDesign_Pkg.dproj"/>
+    </Target>
+    <Target Name="DSPackDesign_Pkg:Clean">
+        <MSBuild Projects="DSPackDesign_Pkg.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DSPackDesign_Pkg:Make">
+        <MSBuild Projects="DSPackDesign_Pkg.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PlayWin">
+        <MSBuild Projects="..\Demos\DSVideoWinDowEx\PlayWin\PlayWin.dproj"/>
+    </Target>
+    <Target Name="PlayWin:Clean">
+        <MSBuild Projects="..\Demos\DSVideoWinDowEx\PlayWin\PlayWin.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PlayWin:Make">
+        <MSBuild Projects="..\Demos\DSVideoWinDowEx\PlayWin\PlayWin.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DSPackR;DSPackDesign_Pkg;PlayWin"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DSPackR:Clean;DSPackDesign_Pkg:Clean;PlayWin:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DSPackR:Make;DSPackDesign_Pkg:Make;PlayWin:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
